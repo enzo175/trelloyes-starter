@@ -2,9 +2,10 @@ import React from 'react'
 import pt from 'prop-types'
 import List from './List'
 class App extends React.Component {
-
+    
     static propTypes = {
         store: pt.object.isRequired
+    //what is pt^ propTypes?
     }
 
     render() {
