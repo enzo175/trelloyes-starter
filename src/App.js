@@ -21,6 +21,7 @@ class App extends React.Component {
         console.log(`listsprops:`, listsProps)
 
         const lists = listsProps.map((p,index) => <List key={index} {...p} />)
+        // ^^ can this be explained to me?
 
         return (
             <main class="App">
