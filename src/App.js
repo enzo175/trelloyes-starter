@@ -1,38 +1,34 @@
-import React from 'react'
-import pt from 'prop-types'
+import React, { Component } from 'react';
 import List from './List'
-class App extends React.Component {
-    
-    static propTypes = {
-        store: pt.object.isRequired
-    //what is pt^ propTypes?
+import './App.css';
+
+class App extends Component {
+  static defaultProps = {
+    store: {
+      lists: [],
+      allCards: {},
     }
+  };
 
-    render() {
-        // const store =  this.props.store
-        const { store } = this.props
-
-        const listsProps = store.lists.map(listInfo => {
-            return {
-                header: listInfo.header,
-                cards: listInfo.cardIds.map(id => store.allCards[id])
-            }
-        })
-        console.log(`listsprops:`, listsProps)
-
-        const lists = listsProps.map((p,index) => <List key={index} {...p} />)
-        // ^^ can this be explained to me?
-
-        return (
-            <main class="App">
-                <header class="App-header">
-                    <h1>Trelloyes!</h1>
-                </header>
-                <div class="App-list">
-                    {lists}
-                </div>
-            </main>
-        )
-    }
+  render() {
+    const { store } = this.props
+    return (
+      <main className='App'>
+        <header className='App-header'>
+          <h1>Trelloyes!</h1>
+        </header>
+        <div className='App-list'>
+          {store.lists.map(list => (
+            <List
+              key={list.id}
+              header={list.header}
+              cards={list.cardIds.map(id => store.allCards[id])}
+            />
+          ))}
+        </div>
+      </main>
+    );
+  }
 }
-export default App
+
+export default App;
